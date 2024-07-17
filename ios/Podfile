@@ -39,6 +39,9 @@ target 'AppRevivePotosi' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
+  pod 'ViroReact', :path => '../node_modules/@reactvision/react-viro/ios/'
+  pod 'ViroKit', :path => '../node_modules/@reactvision/react-viro/ios/dist/ViroRenderer/'
+
   target 'AppRevivePotosiTests' do
     inherit! :complete
     # Pods for testing
