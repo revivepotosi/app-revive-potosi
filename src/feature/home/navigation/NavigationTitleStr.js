@@ -7,6 +7,10 @@ const NAVIGATION_TITLE_STR = {
         es: 'Explorar',
         en: 'Explore',
     },
+    experience: {
+        es: 'Experiencia',
+        en: 'Experience',
+    },
     info: {
         es: 'Información',
         en: 'Info',

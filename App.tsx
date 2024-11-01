@@ -12,6 +12,7 @@ import { getCurrentScreenName } from './src/navigation/navigationService';
 import ON_BOARDING_ROUTES from './src/feature/onBoarding/navigation/routes';
 import HOME_ROUTES from './src/feature/home/navigation/routes'
 import ROUTES from './src/navigation/routes';
+import ExperienceProvider from './src/context/experience/ExperienceProvider';
 
 
 export default function App() {
@@ -48,7 +49,9 @@ export default function App() {
             <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
                 <GlobalProvider>
                     <LanguageProvider>
-                        <Navigation />
+                        <ExperienceProvider>
+                            <Navigation />
+                        </ExperienceProvider>
                     </LanguageProvider>
                 </GlobalProvider>
             </ApplicationProvider>

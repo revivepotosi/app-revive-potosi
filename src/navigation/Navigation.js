@@ -6,6 +6,7 @@ import InitNavigation from './InitNavigation';
 import OnBoardingNavigation from '../feature/onBoarding/navigation/Navigation';
 import AppNavigation from '../feature/home/navigation/AppNavigation';
 import { isReadyRef, navigationRef } from './navigationService';
+import ExperienceNavigation from '../feature/experience/navigation/Navigation';
 
 const AllStack = createStackNavigator();
 
@@ -33,6 +34,7 @@ const Navigation = () => {
                 <AllStack.Screen name={ROUTES.initNavigation} component={InitNavigation} />
                 <AllStack.Screen name={ROUTES.onBoardingNavigation} component={OnBoardingNavigation} />
                 <AllStack.Screen name={ROUTES.appNavigation} component={AppNavigation} />
+                <AllStack.Screen name={ROUTES.experienceNavigation} component={ExperienceNavigation} />
             </AllStack.Navigator>
         </NavigationContainer>
     );

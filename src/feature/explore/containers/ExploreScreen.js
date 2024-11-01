@@ -52,7 +52,7 @@ const InitialScene = (props) => {
     setPosition(newPosition);
   };
 
-  const rotateObject = (rotateState, rotationFactor, source) => {
+  const rotateObject = (rotateState, rotationFactor) => {
     if (rotateState === 3) {
       let currentRotation = [rotationobject[0] - rotationFactor, rotationobject[1] - rotationFactor, rotationobject[2] - rotationFactor];
       console.log("current rotation : ", rotation);
@@ -62,7 +62,7 @@ const InitialScene = (props) => {
     }
   };
 
-  const scaleObject = (pinchState, scaleFactor, source) => {
+  const scaleObject = (pinchState, scaleFactor) => {
     if (pinchState === 3) {
       let currentScale = scaleobject[0];
       let newScale = currentScale * scaleFactor;

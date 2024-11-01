@@ -38,12 +38,14 @@ const HomeScreen = () => {
         <SelectorCard title={item?.text[languageCode.toUpperCase()].name} image={ item.image.url }/>
     );
     const keyExtractor = (item) => item.id;
-    const goExplore = () => navigation.navigate(
-        ROUTES.appNavigation,
-        {
-            screen: APP_ROUTES.exploreNavigation,
-        }
-    );
+    // const goExplore = () => navigation.navigate(
+    //     ROUTES.appNavigation,
+    //     {
+    //         screen: APP_ROUTES.exploreNavigation,
+    //     }
+    // );
+
+    const goExplore = () => navigation.navigate(ROUTES.experienceNavigation);
 
     return (
         <View style={[Style.flex_i, Style.bg_background]}>
