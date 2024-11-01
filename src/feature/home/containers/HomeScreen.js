@@ -14,12 +14,14 @@ import SelectorCard from '../../../components/SelectorCard';
 import { categoryDummy, placesDummy } from '../data/dataDummy';
 import APP_ROUTES from '../navigation/routes';
 import ROUTES from '../../../navigation/routes';
+import useHomeScreen from '../hooks/useHomeScreen';
 
 const HomeScreen = () => {
     const { languageCode } = useLanguage();
     const navigation = useNavigation();
+    const { categories, museums} =useHomeScreen();
     const renderHeaderContent = () => (
-        <>
+                <>
             <View style={[Style.flex_row, Style.jc_sb, Style.pt_4, Style.ph_5, Style.pb_4]}>
                 <Text style={[Style.c_white, Style.headline_medium]}>{GLOBAL_STR.appTitle}</Text>
                 <AppLogo />
@@ -30,10 +32,10 @@ const HomeScreen = () => {
         </>
     );
     const renderPlaces = ({ item }) => (
-        <SelectorCard title={item?.name} subtitle={item?.subtitle[languageCode]} />
+        <SelectorCard title={item?.text[languageCode.toUpperCase()].name} subtitle={item?.category.text[languageCode.toUpperCase()].name}  image={ item.image.url}/>
     );
     const renderCategories = ({ item }) => (
-        <SelectorCard title={item?.name[languageCode]}/>
+        <SelectorCard title={item?.text[languageCode.toUpperCase()].name} image={ item.image.url }/>
     );
     const keyExtractor = (item) => item.id;
     const goExplore = () => navigation.navigate(
@@ -57,7 +59,7 @@ const HomeScreen = () => {
                     </View>
                     <FlatList
                         horizontal
-                        data={placesDummy}
+                        data={museums}
                         renderItem={renderPlaces}
                         keyExtractor={keyExtractor}
                         contentContainerStyle={[Style.ph_4, Style.pb_4]}
@@ -72,7 +74,7 @@ const HomeScreen = () => {
                     </View>
                     <FlatList
                         horizontal
-                        data={categoryDummy}
+                        data={categories}
                         renderItem={renderCategories}
                         keyExtractor={keyExtractor}
                         contentContainerStyle={[Style.ph_4, Style.pb_4]}
@@ -80,9 +82,9 @@ const HomeScreen = () => {
                         bounces={false}
                     />
                 </View>
-            </HomeHeader>
-        </View>
-    );
+      </HomeHeader>
+    </View>
+  );
 };
 
 export default HomeScreen;

@@ -14,11 +14,11 @@ const styles = StyleSheet.create({
     }),
 });
 
-const SelectorCard = ({ title, subtitle }) => {
+const SelectorCard = ({ title, subtitle, image }) => {
     return (
         <Pressable style={styles.container}>
             <ImageBackground
-                source={require('../../assets/fondo-card-test.png')}
+                source={{uri: image }}
                 imageStyle={Style.br_20}
                 style={Style.flex_i}
             >
@@ -56,10 +56,12 @@ const SelectorCard = ({ title, subtitle }) => {
 SelectorCard.propTypes = {
     title: PropTypes.string.isRequired,
     subtitle: PropTypes.string,
+    image: PropTypes.string,
 };
 
 SelectorCard.defaultProps = {
     subtitle: '',
+    image: '',
 };
 
 export default SelectorCard;

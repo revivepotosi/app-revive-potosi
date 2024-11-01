@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035190875734",
+    "project_id": "revivepotosi-4e6fb",
+    "storage_bucket": "revivepotosi-4e6fb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035190875734:android:caa56b18a031cfb5f82df7",
+        "android_client_info": {
+          "package_name": "com.apprevivepotosi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8FhvCdesc17PpIjFU65CRa1_nUymXM9Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
