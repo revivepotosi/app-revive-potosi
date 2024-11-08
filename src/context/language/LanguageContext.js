@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 
 export const initialState = {
-    languageCode: 'es',
+    languageCode: 'ES',
     changeLanguage: (languageCode) => languageCode,
 };
 

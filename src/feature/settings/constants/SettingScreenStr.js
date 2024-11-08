@@ -1,31 +1,31 @@
 const SETTING_SCREEN_STR = {
     select: {
         label: {
-            es: 'Seleccione su idioma',
-            en: 'Select your language',
+            ES: 'Seleccione su idioma',
+            EN: 'Select your language',
         },
         selectData: [
             {
                 value: 'Español',
-                code: 'es',
+                code: 'ES',
             },
             {
                 value: 'English',
-                code: 'en',
+                code: 'EN',
             },
         ],
         placeholder: {
-            es: 'Idioma',
-            en: 'Language',
+            ES: 'Idioma',
+            EN: 'Language',
         },
     },
     goOnBoarding: {
-        es: 'Ir a la Introducción',
-        en: 'Go to On Boarding',
+        ES: 'Ir a la Introducción',
+        EN: 'Go to On Boarding',
     },
     buttonOnBoarding: {
-        es: 'Ir',
-        en: 'Go',
+        ES: 'Ir',
+        EN: 'Go',
     }
 };
 

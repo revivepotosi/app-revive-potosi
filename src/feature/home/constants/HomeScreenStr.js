@@ -1,15 +1,11 @@
 const HOME_SCREEN_STR = {
-    headerTitle: {
-        es: 'Bienvenido',
-        en: 'Welcome',
-    },
-    nearCenters: {
-        es: 'Centros históricos cercanos',
-        en: 'Nearby historic centers',
+    centers: {
+        ES: 'Centros históricos',
+        EN: 'Historic centers',
     },
     category: {
-        es: 'Categorías',
-        en: 'Categories',
+        ES: 'Categorías',
+        EN: 'Categories',
     },
 };
 

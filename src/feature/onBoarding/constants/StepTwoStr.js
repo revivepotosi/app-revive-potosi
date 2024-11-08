@@ -1,15 +1,15 @@
 const STEP_TWO_STR = {
     title: {
-        es: 'Explora centros historicos',
-        en: 'Explore historic downtowns',
+        ES: 'Explora centros historicos',
+        EN: 'Explore historic downtowns',
     },
     subtitle: {
-        es: 'Puedes encontrar museos, iglesias y lugares emblematicos de la ciudad.',
-        en: 'You can find museums, churches, and iconic places in the city.',
+        ES: 'Puedes encontrar museos, iglesias y lugares emblematicos de la ciudad.',
+        EN: 'You can find museums, churches, and iconic places in the city.',
     },
     button: {
-        es: 'Continuar',
-        en: 'Next',
+        ES: 'Continuar',
+        EN: 'Next',
     },
 };
 

@@ -4,7 +4,7 @@ import LanguageContext from './LanguageContext';
 
 const LanguageProvider = (props) => {
     const { children } = props;
-    const [languageCode, setLanguageCode] = useState('es');
+    const [languageCode, setLanguageCode] = useState('ES');
 
     useEffect(() => {
         AsyncStorage.getItem('languageCode').then(

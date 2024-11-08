@@ -1,12 +1,12 @@
 const EXPLORE_CARD_STR = {
     title: {
-        es: 'Conoce nuevas formas de revivir la historia',
-        en: 'Discover new ways to relive history',
+        ES: 'Conoce nuevas formas de revivir la historia',
+        EN: 'Discover new ways to relive history',
     },
     button: {
         label: {
-            es: 'Explorar',
-            en: 'Explore',
+            ES: 'Explorar',
+            EN: 'Explore',
         }
     }
 };

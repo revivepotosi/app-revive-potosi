@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 import Style from '../style/Style';
 import { Text } from '@ui-kitten/components';
+import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
 const styles = StyleSheet.create({
     container: ({ pressed }) => ({
@@ -14,7 +15,15 @@ const styles = StyleSheet.create({
     }),
 });
 
-const SelectorCard = ({ title, subtitle, image }) => {
+const SelectorCard = ({ title, subtitle, image, loading }) => {
+    if (loading) return (
+        <View style={Style.mr_2}>
+            <SkeletonPlaceholder borderRadius={20}>
+                <SkeletonPlaceholder.Item width={140} height={100} />
+            </SkeletonPlaceholder>
+        </View>
+    );
+
     return (
         <Pressable style={styles.container}>
             <ImageBackground
@@ -54,14 +63,17 @@ const SelectorCard = ({ title, subtitle, image }) => {
 };
 
 SelectorCard.propTypes = {
-    title: PropTypes.string.isRequired,
+    title: PropTypes.string,
     subtitle: PropTypes.string,
     image: PropTypes.string,
+    loading: PropTypes.bool,
 };
 
 SelectorCard.defaultProps = {
+    title: '',
     subtitle: '',
     image: '',
+    loading: false,
 };
 
 export default SelectorCard;

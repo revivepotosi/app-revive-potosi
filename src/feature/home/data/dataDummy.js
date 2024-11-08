@@ -8,22 +8,22 @@ import firestore from '@react-native-firebase/firestore';
         {
             id: 1,
             name: {
-                es: 'Museos',
-                en: 'Museums',
+                ES: 'Museos',
+                EN: 'Museums',
             }
         },
         {
             id: 2,
             name: {
-                es: 'Iglesias',
-                en: 'Churches',
+                ES: 'Iglesias',
+                EN: 'Churches',
             }
         },
         {
             id: 3,
             name: {
-                es: 'parques',
-                en: 'Park',
+                ES: 'parques',
+                EN: 'Park',
             }
         },
         
@@ -34,24 +34,24 @@ const placesDummy = [
         id: 1,
         name: 'Santa Teresa',
         subtitle: {
-            es: 'Museos',
-            en: 'Museums',
+            ES: 'Museos',
+            EN: 'Museums',
         }
     },
     /*{
         id: 2,
         name: 'San Lorenzo de Carangas',
         subtitle: {
-            es: 'Iglesias',
-            en: 'Churches',
+            ES: 'Iglesias',
+            EN: 'Churches',
         }
     },
     {
         id: 3,
         name: 'Paseo Boulevar',
         subtitle: {
-            es: 'Lugares',
-            en: 'Places',
+            ES: 'Lugares',
+            EN: 'Places',
         }
     },*/
 ];

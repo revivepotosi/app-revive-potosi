@@ -2,32 +2,32 @@ import GLOBAL_STR from '../../../constants/globalStr';
 
 const STEP_ONE_STR = {
     title: {
-        es: 'Bienvenido a\n' + GLOBAL_STR.appTitle,
-        en: 'Welcome to\n',
+        ES: 'Bienvenido a\n' + GLOBAL_STR.appTitle,
+        EN: 'Welcome to\n',
     },
     select: {
         label: {
-            es: 'Seleccione su idioma',
-            en: 'Select your language',
+            ES: 'Seleccione su idioma',
+            EN: 'Select your language',
         },
         selectData: [
             {
                 value: 'Español',
-                code: 'es',
+                code: 'ES',
             },
             {
                 value: 'English',
-                code: 'en',
+                code: 'EN',
             },
         ],
         placeholder: {
-            es: 'Idioma',
-            en: 'Language',
+            ES: 'Idioma',
+            EN: 'Language',
         },
     },
     button: {
-        es: 'Continuar',
-        en: 'Next',
+        ES: 'Continuar',
+        EN: 'Next',
     },
 };
 

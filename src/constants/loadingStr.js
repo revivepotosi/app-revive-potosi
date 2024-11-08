@@ -1,7 +1,7 @@
 const LOADING_STR = {
     title: {
-        es: 'Cargando',
-        en: 'Loading',
+        ES: 'Cargando',
+        EN: 'Loading',
     },
 };
 

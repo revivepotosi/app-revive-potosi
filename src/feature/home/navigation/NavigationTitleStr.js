@@ -1,23 +1,23 @@
 const NAVIGATION_TITLE_STR = {
     home: {
-        es: 'Inicio',
-        en: 'Home',
+        ES: 'Inicio',
+        EN: 'Home',
     },
     explore: {
-        es: 'Explorar',
-        en: 'Explore',
+        ES: 'Explorar',
+        EN: 'Explore',
     },
     experience: {
-        es: 'Experiencia',
-        en: 'Experience',
+        ES: 'Experiencia',
+        EN: 'Experience',
     },
     info: {
-        es: 'Información',
-        en: 'Info',
+        ES: 'Información',
+        EN: 'Info',
     },
     setting: {
-        es: 'Ajustes',
-        en: 'Setting',
+        ES: 'Ajustes',
+        EN: 'Setting',
     },
 };
 

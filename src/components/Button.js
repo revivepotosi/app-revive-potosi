@@ -6,7 +6,7 @@ import Icon from './Icon';
 
 
 const Button = (props) => {
-    const { children, style, iconName } = props;
+    const { children, style, iconName, size, appearance  } = props;
     const LeftIcon = () => {
         if (iconName) {
             return (
@@ -25,6 +25,8 @@ const Button = (props) => {
             {...props}
             style={[Style.br_20, style]}
             accessoryLeft={LeftIcon}
+            size={size}
+            appearance={appearance}
         >
             {children}
         </ButtonKitten>
@@ -35,11 +37,15 @@ Button.propTypes = {
     children: PropTypes.node.isRequired,
     style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
     iconName: PropTypes.string,
+    size: PropTypes.string,
+    appearance: PropTypes.string,
 };
 
 Button.defaultProps = {
     style: {},
     iconName: '',
+    size: 'medium',
+    appearance: 'primary',
 };
 
 export default Button;

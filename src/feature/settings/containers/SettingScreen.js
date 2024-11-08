@@ -18,7 +18,7 @@ const SettingScreen = () => {
     const [languageIndex, setLanguageIndex] = useState(new IndexPath(0));
     
     useEffect(() => {
-        const initIndexPath = new IndexPath(languageCode === 'es' ? 0 : 1);
+        const initIndexPath = new IndexPath(languageCode === 'ES' ? 0 : 1);
         setLanguageIndex(initIndexPath);
         setLanguage(SETTING_SCREEN_STR.select.selectData[initIndexPath.row]);
     }, [languageCode]);
