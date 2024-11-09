@@ -9,6 +9,7 @@ import INFO_SCREEN_STR from '../constants/infoScreenStr';
 import InfoScreenSkeleton from '../components/InfoScreenSkeleton';
 import Content from '../../../components/Content';
 import { isImageContent, isTextContent } from '../../../utils/functions';
+import CardContainer from '../../../components/CardContainer';
 
 const InfoScreen = () => {
     const { languageCode } = useLanguage();
@@ -38,14 +39,16 @@ const InfoScreen = () => {
     return (
         <Container barStyle="light-content" barBackgroundColor={Style.primary}>
             <ScrollView>
-                <View style={[Style.ph_4, Style.pt_4]}>
-                    {hasContent ? (
-                        renderContent(info.contents)
-                    ) : (
-                        <Text style={Style.title_medium}>
-                            {INFO_SCREEN_STR.emptyMessage[languageCode]}
-                        </Text>
-                    )}
+                <View style={Style.p_4}>
+                    <CardContainer>
+                        {hasContent ? (
+                            renderContent(info.contents)
+                        ) : (
+                            <Text style={Style.title_medium}>
+                                {INFO_SCREEN_STR.emptyMessage[languageCode]}
+                            </Text>
+                        )}
+                    </CardContainer>
                 </View>
             </ScrollView>
         </Container>
