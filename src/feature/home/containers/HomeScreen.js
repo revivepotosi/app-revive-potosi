@@ -10,7 +10,7 @@ import HomeSection from '../components/HomeSection/HomeSection';
 import GLOBAL_STR from '../../../constants/globalStr';
 
 const HomeScreen = () => {
-    const navigation = useNavigation();
+	const navigation = useNavigation();
     const { loading, categories, museums } = useHomeScreen();
 
     const goExplore = () => navigation.navigate(ROUTES.experienceNavigation);

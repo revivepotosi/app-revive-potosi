@@ -28,6 +28,9 @@ end
 target 'AppRevivePotosi' do
   config = use_native_modules!
 
+  pod 'Firebase/Core'
+  pod 'Firebase/Firestore'
+
   use_react_native!(
     :path => config[:reactNativePath],
     # Enables Flipper.

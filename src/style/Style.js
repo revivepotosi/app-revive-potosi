@@ -214,8 +214,9 @@ const textCustom = {
 };
 
 const border = {
+    br_10: { borderRadius: 10 },
     br_20: { borderRadius: 20 },
-}
+};
 
 const defaultShadowStyle = {
     shadowColor: global_colors.primary,

@@ -1,4 +1,4 @@
-const getTargets = (experiences) => {
+const getTargets = experiences => {
     const targets = experiences.reduce((res, el) => {
         return {
             ...res,

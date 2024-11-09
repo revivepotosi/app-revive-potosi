@@ -5,7 +5,7 @@ import Style from '../style/Style';
 
 const Container = ({ children, style, barStyle, barBackgroundColor }) => (
     <SafeAreaView style={[Style.flex_grow, Style.bg_background, style]}>
-        <StatusBar barStyle={barStyle} backgroundColor={barBackgroundColor}/>
+        <StatusBar barStyle={barStyle} backgroundColor={barBackgroundColor} />
         {children}
     </SafeAreaView>
 );

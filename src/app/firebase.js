@@ -1,21 +1,28 @@
-import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
-//import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
+import { firebase } from '@react-native-firebase/app';
+import firestore from '@react-native-firebase/firestore';
+
+import {
+    FIREBASE_API_KEY,
+    FIREBASE_PROJECT_ID,
+    FIREBASE_STORAGE_BUCKET,
+    FIREBASE_MESSAGING_SENDER_ID,
+    FIREBASE_APP_ID,
+    FIREBASE_MEASUREMENT_ID,
+} from '@env';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDJfgBXR8Q7wGmNthi0EwcC88s2FhRmlMk",
-  //authDomain: "revivepotosi-4e6fb.firebaseapp.com",
-  projectId: "revivepotosi-4e6fb",
-  storageBucket: "revivepotosi-4e6fb.appspot.com",
-  messagingSenderId: "1035190875734",
-  appId: "1:1035190875734:web:1afa1564d9a169d9f82df7",
-  measurementId: "G-W9C5SNGQQC"
+    apiKey: FIREBASE_API_KEY,
+    projectId: FIREBASE_PROJECT_ID,
+    storageBucket: FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: FIREBASE_MESSAGING_SENDER_ID,
+    appId: FIREBASE_APP_ID,
+    measurementId: FIREBASE_MEASUREMENT_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-//export const auth = getAuth(app);
-//setPersistence(auth, browserLocalPersistence);
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
 
-export const db = getFirestore(app);
+export const db = firestore();
 
-export default app;
+export default firebase;
