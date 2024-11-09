@@ -13,55 +13,90 @@ import HOME_SCREEN_STR from '../../constants/HomeScreenStr';
 import SelectorCard from '../../../../components/SelectorCard';
 import Style from '../../../../style/Style';
 
-
-const HomeSection = ({ loading, data, type  }) => {
+const HomeSection = ({ loading, data, type }) => {
     const { languageCode } = useLanguage();
 
-    if (loading) return (
-        <>
-            <View style={[Style.flex_row, Style.jc_sb, Style.mb_3, Style.ph_4]}>
-                <View style={[Style.flex_row, Style.ai_c]}>
-                    <SkeletonPlaceholder>
-                        <SkeletonPlaceholder.Item width={30} height={30} borderRadius={50} />
-                    </SkeletonPlaceholder>
-                    <SkeletonPlaceholder borderRadius={10}>
-                        <SkeletonPlaceholder.Item width={160} height={14} style={Style.ml_2} />
+    if (loading) {
+        return (
+            <>
+                <View
+                    style={[
+                        Style.flex_row,
+                        Style.jc_sb,
+                        Style.mb_3,
+                        Style.ph_4,
+                    ]}>
+                    <View style={[Style.flex_row, Style.ai_c]}>
+                        <SkeletonPlaceholder>
+                            <SkeletonPlaceholder.Item
+                                width={30}
+                                height={30}
+                                borderRadius={50}
+                            />
+                        </SkeletonPlaceholder>
+                        <SkeletonPlaceholder borderRadius={10}>
+                            <SkeletonPlaceholder.Item
+                                width={160}
+                                height={14}
+                                style={Style.ml_2}
+                            />
+                        </SkeletonPlaceholder>
+                    </View>
+                    <SkeletonPlaceholder borderRadius={50}>
+                        <SkeletonPlaceholder.Item width={100} height={30} />
                     </SkeletonPlaceholder>
                 </View>
-                <SkeletonPlaceholder borderRadius={50}>
-                    <SkeletonPlaceholder.Item width={100} height={30} />
-                </SkeletonPlaceholder>
-            </View>
-            <FlatList
-                horizontal
-                data={HOME_SECTION_STR.loadingData}
-                renderItem={() => <SelectorCard loading />}
-                keyExtractor={keyExtractor}
-                contentContainerStyle={[Style.ph_4, Style.pb_4]}
-                showsHorizontalScrollIndicator={false}
-                bounces={false}
-            />
-        </>
-    ); 
+                <FlatList
+                    horizontal
+                    data={HOME_SECTION_STR.loadingData}
+                    renderItem={() => <SelectorCard loading />}
+                    keyExtractor={keyExtractor}
+                    contentContainerStyle={[Style.ph_4, Style.pb_4]}
+                    showsHorizontalScrollIndicator={false}
+                    bounces={false}
+                />
+            </>
+        );
+    }
 
     const renderItem = ({ item }) => {
-        if (isCenter(type)) return (
-            <SelectorCard title={item?.text[languageCode].name} subtitle={item?.category.text[languageCode].name}  image={ item.image.url}/>
-        )
+        if (isCenter(type)) {
+            return (
+                <SelectorCard
+                    title={item?.text[languageCode].name}
+                    subtitle={item?.category.text[languageCode].name}
+                    image={item.image.url}
+                />
+            );
+        }
         return (
-            <SelectorCard title={item?.text[languageCode].name} image={ item.image.url }/>
+            <SelectorCard
+                title={item?.text[languageCode].name}
+                image={item.image.url}
+            />
         );
     };
-    const getIcon = () => isCenter(type) ? HOME_SECTION_STR.centerIcon : HOME_SECTION_STR.categoryIcon;
+    const getIcon = () =>
+        isCenter(type)
+            ? HOME_SECTION_STR.centerIcon
+            : HOME_SECTION_STR.categoryIcon;
 
-    const getTitle = () => isCenter(type) ? HOME_SCREEN_STR.centers[languageCode] : HOME_SCREEN_STR.category[languageCode];
+    const getTitle = () =>
+        isCenter(type)
+            ? HOME_SCREEN_STR.centers[languageCode]
+            : HOME_SCREEN_STR.category[languageCode];
 
     return (
         <>
             <View style={[Style.flex_row, Style.jc_sb, Style.mb_3, Style.ph_4]}>
                 <View style={[Style.flex_row, Style.ai_c]}>
-                    <BadgeIcon iconName={getIcon()} containerSize={30} iconSize={18} />
-                    <Text style={[Style.ml_2, Style.title_medium, Style.c_black]}>
+                    <BadgeIcon
+                        iconName={getIcon()}
+                        containerSize={30}
+                        iconSize={18}
+                    />
+                    <Text
+                        style={[Style.ml_2, Style.title_medium, Style.c_black]}>
                         {getTitle()}
                     </Text>
                 </View>
@@ -71,7 +106,7 @@ const HomeSection = ({ loading, data, type  }) => {
             </View>
             <FlatList
                 horizontal
-                data={data}
+                data={data.slice(0, HOME_SECTION_STR.maxData)}
                 renderItem={renderItem}
                 keyExtractor={keyExtractor}
                 contentContainerStyle={[Style.ph_4, Style.pb_4]}

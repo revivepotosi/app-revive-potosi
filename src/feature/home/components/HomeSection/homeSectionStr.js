@@ -5,7 +5,8 @@ const HOME_SECTION_STR = {
     },
     centerIcon: 'church',
     categoryIcon: 'filter-alt',
-    loadingData: [{ id: 1 }, { id: 2 }, { id: 3 }]
+    loadingData: [{ id: 1 }, { id: 2 }, { id: 3 }],
+    maxData: 5,
 };
 
 export default HOME_SECTION_STR;
