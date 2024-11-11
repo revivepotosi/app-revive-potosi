@@ -1,11 +1,12 @@
-import { collection, getDocs, query, where } from 'firebase/firestore';
-import { db } from '../firebase';
+import firestore from '@react-native-firebase/firestore';
 import collections from '../../constants/collections';
 
-const getExperiences = async (historicCenterID) => {
-    const q = query(collection(db, collections.experience), where('historicCenterID', "==", historicCenterID));
-    const querySnapshot = await getDocs(q);
-    const data = querySnapshot.docs.map((doc) => ({
+const getExperiences = async historicCenterID => {
+    const querySnapshot = await firestore()
+        .collection(collections.experience)
+        .where('historicCenterID', '==', historicCenterID)
+        .get();
+    const data = querySnapshot.docs.map(doc => ({
         id: doc.id,
         ...doc.data(),
     }));

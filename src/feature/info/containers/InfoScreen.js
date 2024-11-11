@@ -38,7 +38,7 @@ const InfoScreen = () => {
 
     return (
         <Container barStyle="light-content" barBackgroundColor={Style.primary}>
-            <ScrollView>
+            <ScrollView bounces={false}>
                 <View style={Style.p_4}>
                     <CardContainer>
                         {hasContent ? (

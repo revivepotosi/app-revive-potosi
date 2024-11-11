@@ -1,0 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.3'
+    }
+}
+
+def dotenv = new Properties()
+file("../.env").withInputStream { dotenv.load(it) }
+project.ext.env = dotenv

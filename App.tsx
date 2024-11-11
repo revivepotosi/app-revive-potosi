@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { BackHandler } from 'react-native';
 import * as eva from '@eva-design/eva';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
@@ -10,10 +10,10 @@ import GlobalProvider from './src/context/global/GlobalProvider';
 import { MaterialIconsPack } from './src/style/material-icons';
 import { getCurrentScreenName } from './src/navigation/navigationService';
 import ON_BOARDING_ROUTES from './src/feature/onBoarding/navigation/routes';
-import HOME_ROUTES from './src/feature/home/navigation/routes'
+import HOME_ROUTES from './src/feature/home/navigation/routes';
 import ROUTES from './src/navigation/routes';
 import ExperienceProvider from './src/context/experience/ExperienceProvider';
-
+import PermissionProvider from './src/context/permission/PermissionProvider';
 
 export default function App() {
     useEffect(() => {
@@ -21,7 +21,7 @@ export default function App() {
             const currentRouteName = getCurrentScreenName();
 
             const isBlockBack = [
-                ON_BOARDING_ROUTES.stepOne, 
+                ON_BOARDING_ROUTES.stepOne,
                 ON_BOARDING_ROUTES.stepTwo,
                 ON_BOARDING_ROUTES.stepThree,
                 ROUTES.initNavigation,
@@ -31,14 +31,17 @@ export default function App() {
 
             const isExitApp = currentRouteName === HOME_ROUTES.home;
             if (isExitApp) {
-                BackHandler.exitApp()
+                BackHandler.exitApp();
                 return true;
             }
 
             return false;
         };
 
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+        const backHandler = BackHandler.addEventListener(
+            'hardwareBackPress',
+            backAction,
+        );
 
         return () => backHandler.remove();
     }, []);
@@ -48,11 +51,13 @@ export default function App() {
             <IconRegistry icons={MaterialIconsPack}/>
             <ApplicationProvider {...eva} theme={{ ...eva.light, ...theme }}>
                 <GlobalProvider>
-                    <LanguageProvider>
-                        <ExperienceProvider>
-                            <Navigation />
-                        </ExperienceProvider>
-                    </LanguageProvider>
+                    <PermissionProvider>
+                        <LanguageProvider>
+                            <ExperienceProvider>
+                                <Navigation />
+                            </ExperienceProvider>
+                        </LanguageProvider>
+                    </PermissionProvider>
                 </GlobalProvider>
             </ApplicationProvider>
         </>

@@ -6,11 +6,11 @@ import ViroContent from '../components/ViroContent';
 const ExperienceScreen = () => {
     const { loading } = useExperienceScreen();
 
-    if (loading) return (<Loading />);
+    if (loading) {
+        return <Loading />;
+    }
 
-    return (
-        <ViroContent />    
-    );
+    return <ViroContent />;
 };
 
 export default ExperienceScreen;

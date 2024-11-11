@@ -1,37 +1,35 @@
-import firestore from '@react-native-firebase/firestore';
-import { useEffect, useState } from 'react';
-import collections from '../../../constants/collections';
+import { useLayoutEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import useLocation from '../../../hooks/useLocation';
+import getHistoricCentersOrdered from '../../../app/api/historicCenter/getHistoricCentersOrdered';
+import getCategories from '../../../app/api/category/getCategories';
+import ROUTES from '../navigation/routes';
 
 const useHomeScreen = () => {
+    const navigation = useNavigation();
+    const { location, loading: locationLoading } = useLocation();
     const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState([]);
-    const [museums, setMuseums] = useState([]);
+    const [historicCenters, setHistoricCenters] = useState([]);
 
-    useEffect(() => {
-        const init = async () => {
-            const querySnapshot = await firestore()
-                .collection(collections.category)
-                .get();
-            const data = querySnapshot.docs.map(doc => ({
-                id: doc.id,
-                ...doc.data(),
-            }));
-            setCategories(data);
+    const goExplore = () => navigation.navigate(ROUTES.explore);
 
-            const querySnapshot2 = await firestore()
-                .collection(collections.historicCenter)
-                .get();
-            const data2 = querySnapshot2.docs.map(doc2 => ({
-                id: doc2.id,
-                ...doc2.data(),
-            }));
-            setMuseums(data2);
-        };
+    useLayoutEffect(() => {
+        if (!locationLoading) {
+            const init = async () => {
+                const resCategories = await getCategories();
+                setCategories(resCategories);
+                const resHistoricCenters = await getHistoricCentersOrdered(
+                    location,
+                );
+                setHistoricCenters(resHistoricCenters);
+            };
 
-        init().finally(() => setLoading(false));
-    }, []);
+            init().finally(() => setLoading(false));
+        }
+    }, [locationLoading]);
 
-    return { loading, categories, museums };
+    return { loading, categories, historicCenters, goExplore };
 };
 
 export default useHomeScreen;

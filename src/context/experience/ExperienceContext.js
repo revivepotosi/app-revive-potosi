@@ -5,6 +5,8 @@ export const initialState = {
     changeExperiences: () => null,
     targets: [],
     changeTargets: () => null,
+    historicCenterID: '',
+    changeHistoricCenterID: () => null,
 };
 
 const ExperienceContext = createContext(initialState);

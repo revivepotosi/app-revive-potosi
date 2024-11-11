@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { getCurrentScreenName } from '../../../navigation/navigationService';
 import ROUTES from './routes';
 import HomeScreen from '../containers/HomeScreen';
-import ExploreNavigation from '../../explore/navigation/Navigation';
 import InfoScreen from '../../info/containers/InfoScreen';
 import SettingScreen from '../../settings/containers/SettingScreen';
 import BottomTabBar from '../../../components/BottomTabBar';
@@ -15,6 +14,7 @@ import useLanguage from '../../../hooks/useLanguage';
 import NAVIGATION_TITLE_STR from './NavigationTitleStr';
 import AppLogo from '../../../components/AppLogo';
 import HeaderLeft from '../../../components/HeaderLeft';
+import ExploreScreen from '../../explore/containers/ExploreScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -33,7 +33,11 @@ const AppNavigation = () => {
     }, []);
 
     const goBack = () => {
-        if([ROUTES.info, ROUTES.setting].includes(getCurrentScreenName())) {
+        if (
+            [ROUTES.info, ROUTES.setting, ROUTES.explore].includes(
+                getCurrentScreenName(),
+            )
+        ) {
             navigation.navigate(ROUTES.home);
             return;
         }
@@ -66,10 +70,14 @@ const AppNavigation = () => {
                 }}
             />
             <Tab.Screen
-                name={ROUTES.exploreNavigation}
-                component={ExploreNavigation}
+                name={ROUTES.explore}
+                component={ExploreScreen}
                 options={{
-                    headerShown: false,
+                    headerTitle: () =>
+                        renderTitle(NAVIGATION_TITLE_STR.explore[languageCode]),
+                    headerLeft: renderLeft,
+                    headerRight: renderRight,
+                    headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
                 }}
             />
             <Tab.Screen

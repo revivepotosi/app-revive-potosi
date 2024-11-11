@@ -1,6 +1,6 @@
 const ROUTES = {
     home: 'home',
-    exploreNavigation: 'exploreNavigation',
+    explore: 'explore',
     info: 'info',
     setting: 'setting',
 };

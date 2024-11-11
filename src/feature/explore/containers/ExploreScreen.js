@@ -1,111 +1,81 @@
-import {
-  ViroARScene,
-  ViroARSceneNavigator,
-  ViroText,
-  ViroTrackingReason,
-  ViroTrackingStateConstants,
-  Viro3DObject,
-  ViroAmbientLight,
-  ViroMaterials,
-  ViroAnimations,
-  ViroARTrackingTargets,
-  ViroARImageMarker  
-} from '@reactvision/react-viro';
-import React, {useState, useEffect } from 'react';
-import {StyleSheet,Text} from 'react-native';
-import { rotationHandlerName } from 'react-native-gesture-handler/lib/typescript/handlers/RotationGestureHandler';
+import React from 'react';
+import { Text } from '@ui-kitten/components';
+import useExploreScreen from '../hooks/useExploreScreen';
+import ExploreScreenSkeleton from '../components/ExploreScreenSkeleton';
+import Container from '../../../components/Container';
+import { ScrollView, View } from 'react-native';
+import Style from '../../../style/Style';
+import CardContainer from '../../../components/CardContainer';
+import EXPLORE_SCREEN_STR from '../constants/exploreScreenStr';
+import useLanguage from '../../../hooks/useLanguage';
+import Button from '../../../components/Button';
+import ExperiencesAvailable from '../components/ExperiencesAvailable';
 
+const ExploreScreen = () => {
+    const { languageCode } = useLanguage();
+    const {
+        loading,
+        hasLocationPermit,
+        hasExperienceAvailable,
+        historicCenter,
+        experiences,
+        onRefresh,
+        navigateToExperienceScreen,
+    } = useExploreScreen();
 
-//const Modelo2 = require('../../../../assets/models/Chullpa/Chullpa.glb')
-
-//const Models = [
-  //{
-    const Modelo1 = 'https://firebasestorage.googleapis.com/v0/b/revivepotosi-4e6fb.appspot.com/o/models%2FChullpa.glb?alt=media&token=2178e605-2041-4f77-a2b0-0d125202c325';
-  //},
-  //{
-    const Modelo2 = 'https://firebasestorage.googleapis.com/v0/b/revivepotosi-4e6fb.appspot.com/o/models%2FChullpa.glb?alt=media&token=2178e605-2041-4f77-a2b0-0d125202c325';
-  //}
-
-//]
-ViroARTrackingTargets.createTargets({
-  targetImage: {    
-    source: require('../../../../assets/models/Activador/CraneoAc1.jpg'),
-    orientation: 'Up',
-    physicalWidth: 0.15, // Anchura física en metros
-  },
-  targetImage2: {    
-    source: require('../../../../assets/models/Activador/ChullpaAc.jpg'),
-    orientation: 'Up',
-    physicalWidth: 0.15, // Anchura física en metros
-    
-  },
-});
-
-
-const InitialScene = (props) => {
-  let data = props.sceneNavigator.viroAppProps;
-  const [rotationobject, setRotation] = useState([0, 0, 0]);
-  const [scaleobject, setObjetScale] = useState([0.5, 0.5, 0.5]);
-  const [positionobject, setPosition] = useState([0, -16, -1]);
-
-  const moveObject = (newPosition) => {
-    setPosition(newPosition);
-  };
-
-  const rotateObject = (rotateState, rotationFactor) => {
-    if (rotateState === 3) {
-      let currentRotation = [rotationobject[0] - rotationFactor, rotationobject[1] - rotationFactor, rotationobject[2] - rotationFactor];
-      console.log("current rotation : ", rotation);
-      console.log("rotation factor :", rotationFactor);
-      setRotation(currentRotation);
-      
+    if (loading) {
+        return <ExploreScreenSkeleton />;
     }
-  };
-
-  const scaleObject = (pinchState, scaleFactor) => {
-    if (pinchState === 3) {
-      let currentScale = scaleobject[0];
-      let newScale = currentScale * scaleFactor;
-      let newScaleArray = [newScale, newScale, newScale];
-      setObjetScale(newScaleArray);
+    if (!hasLocationPermit) {
+        return (
+            <Container
+                barStyle="light-content"
+                barBackgroundColor={Style.primary}>
+                <View style={Style.p_4}>
+                    <CardContainer>
+                        <Text style={Style.title_medium}>
+                            {
+                                EXPLORE_SCREEN_STR.withoutLocationPermitMessage[
+                                    languageCode
+                                ]
+                            }
+                        </Text>
+                    </CardContainer>
+                </View>
+            </Container>
+        );
     }
-  };
 
-  const anchorFound = () => {
-    console.log("Anchor/Image Detected");
-  };
-
-  return (
-    <ViroARScene>
-      <ViroARImageMarker target="targetImage2" onAnchorFound={anchorFound}>
-        <ViroAmbientLight color="#ffffff" />
-        <Viro3DObject          
-          source={{ uri : Modelo2}}
-          position={positionobject}
-          scale={scaleobject}
-          rotation={rotationobject}
-          type="GLB" 
-          onDrag={rotateObject}
-          //onRotate={rotateObject}
-          onPinch={scaleObject}
-        />
-     </ViroARImageMarker>     
-    </ViroARScene>
-  );
+    return (
+        <Container barStyle="light-content" barBackgroundColor={Style.primary}>
+            <ScrollView bounces={false}>
+                <View style={Style.p_4}>
+                    <CardContainer>
+                        {hasExperienceAvailable ? (
+                            <ExperiencesAvailable
+                                languageCode={languageCode}
+                                title={historicCenter.text[languageCode].name}
+                                experiences={experiences}
+                                onPress={navigateToExperienceScreen}
+                            />
+                        ) : (
+                            <>
+                                <Text style={[Style.title_medium, Style.mb_4]}>
+                                    {
+                                        EXPLORE_SCREEN_STR
+                                            .experienceUnavailable[languageCode]
+                                    }
+                                </Text>
+                                <Button iconName="refresh" onPress={onRefresh}>
+                                    {EXPLORE_SCREEN_STR.reload[languageCode]}
+                                </Button>
+                            </>
+                        )}
+                    </CardContainer>
+                </View>
+            </ScrollView>
+        </Container>
+    );
 };
 
-
-
-export default () => {
-  console.log("iniciando experiencia de AR");
-  return (
-    <ViroARSceneNavigator
-      autofocus={true}
-      initialScene={{
-        scene: InitialScene,
-      }}
-      
-    />
-  );
-  
-};
+export default ExploreScreen;

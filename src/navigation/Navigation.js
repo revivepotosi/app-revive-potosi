@@ -22,19 +22,29 @@ const Navigation = () => {
             ref={navigationRef}
             onReady={() => {
                 isReadyRef.current = true;
-            }}
-        >
+            }}>
             <AllStack.Navigator
                 screenOptions={{
                     headerShown: false,
                     gestureEnabled: false,
                 }}
-                initialRouteName={ROUTES.initNavigation}
-            >
-                <AllStack.Screen name={ROUTES.initNavigation} component={InitNavigation} />
-                <AllStack.Screen name={ROUTES.onBoardingNavigation} component={OnBoardingNavigation} />
-                <AllStack.Screen name={ROUTES.appNavigation} component={AppNavigation} />
-                <AllStack.Screen name={ROUTES.experienceNavigation} component={ExperienceNavigation} />
+                initialRouteName={ROUTES.initNavigation}>
+                <AllStack.Screen
+                    name={ROUTES.initNavigation}
+                    component={InitNavigation}
+                />
+                <AllStack.Screen
+                    name={ROUTES.onBoardingNavigation}
+                    component={OnBoardingNavigation}
+                />
+                <AllStack.Screen
+                    name={ROUTES.appNavigation}
+                    component={AppNavigation}
+                />
+                <AllStack.Screen
+                    name={ROUTES.experienceNavigation}
+                    component={ExperienceNavigation}
+                />
             </AllStack.Navigator>
         </NavigationContainer>
     );

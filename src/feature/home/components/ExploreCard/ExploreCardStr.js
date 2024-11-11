@@ -7,8 +7,8 @@ const EXPLORE_CARD_STR = {
         label: {
             ES: 'Explorar',
             EN: 'Explore',
-        }
-    }
+        },
+    },
 };
 
 export default EXPLORE_CARD_STR;

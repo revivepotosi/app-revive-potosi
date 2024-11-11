@@ -4,7 +4,7 @@ import Container from '../../../components/Container';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 import Style from '../../../style/Style';
 
-const InfoScreenSkeleton = () => (
+const ExploreScreenSkeleton = () => (
     <Container barStyle="light-content" barBackgroundColor={Style.primary}>
         <View style={Style.p_4}>
             <SkeletonPlaceholder borderRadius={20}>
@@ -14,4 +14,4 @@ const InfoScreenSkeleton = () => (
     </Container>
 );
 
-export default InfoScreenSkeleton;
+export default ExploreScreenSkeleton;
