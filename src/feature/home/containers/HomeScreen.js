@@ -16,6 +16,7 @@ const HomeScreen = () => {
         goCategory,
         goSelectorHistoricCenter,
         onPressCategory,
+        onPressHistoricCenter,
     } = useHomeScreen();
 
     return (
@@ -35,6 +36,7 @@ const HomeScreen = () => {
                         loading={loading}
                         data={historicCenters}
                         onMorePress={goSelectorHistoricCenter}
+                        onItemPress={onPressHistoricCenter}
                     />
                     <HomeSection
                         loading={loading}

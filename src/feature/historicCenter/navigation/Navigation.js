@@ -12,6 +12,7 @@ import {
     renderTitle,
 } from '../../../navigation/utils/navigationCommon';
 import SelectorScreen from '../containers/SelectorScreen';
+import HistoricCenterScreen from '../containers/HistoricCenterScreen';
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,19 @@ const HistoricCenterNavigation = () => {
                     headerTitle: () =>
                         renderTitle(
                             NAVIGATION_STR.selectorScreen[languageCode],
+                        ),
+                    headerLeft: () => renderLeft(navigation),
+                    headerRight: renderRight,
+                    headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
+                }}
+            />
+            <Stack.Screen
+                name={ROUTES.historicCenterScreen}
+                component={HistoricCenterScreen}
+                options={{
+                    headerTitle: () =>
+                        renderTitle(
+                            NAVIGATION_STR.historicCenterScreen[languageCode],
                         ),
                     headerLeft: () => renderLeft(navigation),
                     headerRight: renderRight,

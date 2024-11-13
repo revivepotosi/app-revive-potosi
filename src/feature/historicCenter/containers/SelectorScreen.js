@@ -2,14 +2,17 @@ import React from 'react';
 import Container from '../../../components/Container';
 import Style from '../../../style/Style';
 import { Text } from '@ui-kitten/components';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import selectorScreenStr from '../constants/selectorScreenStr';
 import useLanguage from '../../../hooks/useLanguage';
 import { FlatList } from 'react-native';
 import { keyExtractor } from '../../home/components/HomeSection/utils';
 import SelectorCard from '../../../components/SelectorCard';
+import APP_ROUTES from '../../../navigation/routes';
+import HISTORIC_CENTER_ROUTES from '../navigation/routes';
 
 const SelectorScreen = () => {
+    const navigation = useNavigation();
     const route = useRoute();
     const { languageCode } = useLanguage();
     const { historicCenters } = route?.params;
@@ -18,11 +21,19 @@ const SelectorScreen = () => {
         Array.isArray(historicCenters) &&
         historicCenters.length > 0;
 
+    const goHistoricCenter = historicCenter => () => {
+        navigation.navigate(APP_ROUTES.historicCenterNavigation, {
+            screen: HISTORIC_CENTER_ROUTES.historicCenterScreen,
+            params: { historicCenter },
+        });
+    };
+
     const renderItem = ({ item }) => (
         <SelectorCard
             title={item?.text[languageCode].name}
             subtitle={item?.category.text[languageCode].name}
             image={item.image.url}
+            onPress={goHistoricCenter(item)}
             fullWidth
         />
     );

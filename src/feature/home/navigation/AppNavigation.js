@@ -24,21 +24,15 @@ const AppNavigation = () => {
     const navigation = useNavigation();
 
     const goBack = () => {
-        if (
-            [ROUTES.info, ROUTES.setting, ROUTES.explore].includes(
-                getCurrentScreenName(),
-            )
-        ) {
+        if (navigation.canGoBack()) {
+            navigation.goBack();
+        } else {
             navigation.navigate(ROUTES.home);
-            return;
         }
-        navigation.goBack();
     };
 
     const renderTabBar = (props) => <BottomTabBar {...props} />;
-    const renderLeft = () => (navigation.canGoBack() ? (
-        <HeaderLeft onPress={goBack}/>
-        ) : null);
+    const renderLeft = () => <HeaderLeft onPress={goBack} />;
     const renderTitle = (title) => (
         <Text style={[Style.c_white, Style.title_large, isIos && Style.mb_4]}>
             {title}

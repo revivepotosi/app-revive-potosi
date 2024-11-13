@@ -4,7 +4,7 @@ import useLocation from '../../../hooks/useLocation';
 import getHistoricCentersOrdered from '../../../app/api/historicCenter/getHistoricCentersOrdered';
 import getCategories from '../../../app/api/category/getCategories';
 import ROUTES from '../navigation/routes';
-import MAIN_ROUTES from '../../../navigation/routes';
+import APP_ROUTES from '../../../navigation/routes';
 import CATEGORY_ROUTES from '../../category/navigation/routes';
 import HISTORIC_CENTER_ROUTES from '../../historicCenter/navigation/routes';
 
@@ -17,7 +17,7 @@ const useHomeScreen = () => {
 
     const goExplore = () => navigation.navigate(ROUTES.explore);
     const goCategory = () =>
-        navigation.navigate(MAIN_ROUTES.categoryNavigation, {
+        navigation.navigate(APP_ROUTES.categoryNavigation, {
             screen: CATEGORY_ROUTES.categoryScreen,
             params: {
                 categories,
@@ -25,21 +25,29 @@ const useHomeScreen = () => {
             },
         });
     const goSelectorHistoricCenter = () =>
-        navigation.navigate(MAIN_ROUTES.historicCenterNavigation, {
+        navigation.navigate(APP_ROUTES.historicCenterNavigation, {
             screen: HISTORIC_CENTER_ROUTES.selectorScreen,
             params: {
                 historicCenters,
             },
         });
+
     const onPressCategory = id => () => {
         const historicCentersFiltered = historicCenters.filter(
             historicCenter => historicCenter?.category?.id === id,
         );
-        navigation.navigate(MAIN_ROUTES.historicCenterNavigation, {
+        navigation.navigate(APP_ROUTES.historicCenterNavigation, {
             screen: HISTORIC_CENTER_ROUTES.selectorScreen,
             params: {
                 historicCenters: historicCentersFiltered,
             },
+        });
+    };
+
+    const onPressHistoricCenter = historicCenter => () => {
+        navigation.navigate(APP_ROUTES.historicCenterNavigation, {
+            screen: HISTORIC_CENTER_ROUTES.historicCenterScreen,
+            params: { historicCenter },
         });
     };
 
@@ -66,6 +74,7 @@ const useHomeScreen = () => {
         goCategory,
         goSelectorHistoricCenter,
         onPressCategory,
+        onPressHistoricCenter,
     };
 };
 

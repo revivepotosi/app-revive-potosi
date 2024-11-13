@@ -66,7 +66,7 @@ const HomeSection = ({ loading, data, type, onMorePress, onItemPress }) => {
                     title={item?.text[languageCode].name}
                     subtitle={item?.category.text[languageCode].name}
                     image={item.image.url}
-                    onPress={onItemPress(item.id)}
+                    onPress={onItemPress(item)}
                 />
             );
         }
