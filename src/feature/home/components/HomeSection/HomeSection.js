@@ -13,7 +13,7 @@ import HOME_SCREEN_STR from '../../constants/HomeScreenStr';
 import SelectorCard from '../../../../components/SelectorCard';
 import Style from '../../../../style/Style';
 
-const HomeSection = ({ loading, data, type }) => {
+const HomeSection = ({ loading, data, type, onMorePress, onItemPress }) => {
     const { languageCode } = useLanguage();
 
     if (loading) {
@@ -66,6 +66,7 @@ const HomeSection = ({ loading, data, type }) => {
                     title={item?.text[languageCode].name}
                     subtitle={item?.category.text[languageCode].name}
                     image={item.image.url}
+                    onPress={onItemPress(item.id)}
                 />
             );
         }
@@ -73,6 +74,7 @@ const HomeSection = ({ loading, data, type }) => {
             <SelectorCard
                 title={item?.text[languageCode].name}
                 image={item.image.url}
+                onPress={onItemPress(item.id)}
             />
         );
     };
@@ -100,7 +102,7 @@ const HomeSection = ({ loading, data, type }) => {
                         {getTitle()}
                     </Text>
                 </View>
-                <Button appearance="outline" size="small">
+                <Button appearance="outline" size="small" onPress={onMorePress}>
                     {HOME_SECTION_STR.more[languageCode]}
                 </Button>
             </View>
@@ -121,12 +123,16 @@ HomeSection.propTypes = {
     loading: PropTypes.bool,
     data: PropTypes.array,
     type: PropTypes.oneOf([GLOBAL_STR.center, GLOBAL_STR.category]),
+    onMorePress: PropTypes.func,
+    onItemPress: PropTypes.func,
 };
 
 HomeSection.defaultProps = {
     loading: false,
     data: [],
     type: GLOBAL_STR.center,
+    onMorePress: () => null,
+    onItemPress: () => null,
 };
 
 export default HomeSection;

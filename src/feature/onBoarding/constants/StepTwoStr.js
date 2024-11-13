@@ -1,6 +1,6 @@
 const STEP_TWO_STR = {
     title: {
-        ES: 'Explora centros historicos',
+        ES: 'Explora centros históricos',
         EN: 'Explore historic downtowns',
     },
     subtitle: {

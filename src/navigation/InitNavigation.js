@@ -23,7 +23,10 @@ const InitNavigation = () => {
         const initTimeout = setTimeout(() => {
             initPermission().finally(() => {
                 if (isOnBoardingComplete.current) {
-                    navigation.navigate(ROUTES.appNavigation);
+                    navigation.reset({
+                        index: 0,
+                        routes: [{ name: ROUTES.appNavigation }],
+                    });
                 } else {
                     navigation.navigate(ROUTES.onBoardingNavigation);
                 }

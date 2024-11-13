@@ -20,7 +20,9 @@ const ExperienceNavigation = () => {
     const navigation = useNavigation();
     const isIos = Platform.OS === 'ios';
     const goBack = () => {
-        navigation.navigate(APP_ROUTES.appNavigation, { screen: HOME_ROUTES.home });
+        navigation.navigate(APP_ROUTES.appNavigation, {
+            screen: HOME_ROUTES.home,
+        });
     };
 
     const renderLeft = () => <HeaderLeft onPress={goBack}/>;

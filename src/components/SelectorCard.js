@@ -5,17 +5,25 @@ import Style from '../style/Style';
 import { Text } from '@ui-kitten/components';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
-const styles = StyleSheet.create({
-    container: ({ pressed }) => ({
-        width: 140,
-        height: 100,
-        opacity: pressed ? 0.9 : 1,
-        ...Style.mr_2,
-        ...Style.br_20,
-    }),
-});
+const getStyle = fullWidth =>
+    StyleSheet.create({
+        container: ({ pressed }) => ({
+            width: fullWidth ? '%100' : 140,
+            height: 100,
+            opacity: pressed ? 0.9 : 1,
+            ...(fullWidth ? Style.mb_4 : Style.mr_2),
+            ...Style.br_20,
+        }),
+    });
 
-const SelectorCard = ({ title, subtitle, image, loading }) => {
+const SelectorCard = ({
+    title,
+    subtitle,
+    image,
+    loading,
+    fullWidth,
+    onPress,
+}) => {
     if (loading) return (
         <View style={Style.mr_2}>
             <SkeletonPlaceholder borderRadius={20}>
@@ -25,7 +33,7 @@ const SelectorCard = ({ title, subtitle, image, loading }) => {
     );
 
     return (
-        <Pressable style={styles.container}>
+        <Pressable style={getStyle(fullWidth).container} onPress={onPress}>
             <ImageBackground
                 source={{uri: image }}
                 imageStyle={Style.br_20}
@@ -67,6 +75,8 @@ SelectorCard.propTypes = {
     subtitle: PropTypes.string,
     image: PropTypes.string,
     loading: PropTypes.bool,
+    fullWidth: PropTypes.bool,
+    onPress: PropTypes.func,
 };
 
 SelectorCard.defaultProps = {
@@ -74,6 +84,8 @@ SelectorCard.defaultProps = {
     subtitle: '',
     image: '',
     loading: false,
+    fullWidth: false,
+    onPress: () => null,
 };
 
 export default SelectorCard;

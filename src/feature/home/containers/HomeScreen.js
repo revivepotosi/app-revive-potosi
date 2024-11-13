@@ -8,7 +8,15 @@ import HomeSection from '../components/HomeSection/HomeSection';
 import GLOBAL_STR from '../../../constants/globalStr';
 
 const HomeScreen = () => {
-    const { loading, categories, historicCenters, goExplore } = useHomeScreen();
+    const {
+        loading,
+        categories,
+        historicCenters,
+        goExplore,
+        goCategory,
+        goSelectorHistoricCenter,
+        onPressCategory,
+    } = useHomeScreen();
 
     return (
         <View style={[Style.flex_i, Style.bg_background]}>
@@ -23,11 +31,17 @@ const HomeScreen = () => {
                         onPress={goExplore}
                         loading={loading}
                     />
-                    <HomeSection loading={loading} data={historicCenters} />
+                    <HomeSection
+                        loading={loading}
+                        data={historicCenters}
+                        onMorePress={goSelectorHistoricCenter}
+                    />
                     <HomeSection
                         loading={loading}
                         data={categories}
                         type={GLOBAL_STR.category}
+                        onItemPress={onPressCategory}
+                        onMorePress={goCategory}
                     />
                 </View>
             </HomeHeader>

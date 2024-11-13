@@ -9,7 +9,6 @@ import Footer from '../../../components/Footer';
 import STEP_THREE_STR from '../constants/StepThreeStr';
 import useGlobal from '../../../hooks/useGlobal';
 import ROUTES from '../../../navigation/routes';
-import HOME_ROUTES from '../../home/navigation/routes';
 
 const StepThreeScreen = () => {
     const { languageCode } = useLanguage();
@@ -19,7 +18,10 @@ const StepThreeScreen = () => {
     const ratio = win.width/360;
     const onStart = () => {
         completeOnBoarding();
-        navigation.navigate(ROUTES.appNavigation, { screen: HOME_ROUTES.home });
+        navigation.reset({
+            index: 0,
+            routes: [{ name: ROUTES.appNavigation }],
+        });
     };
 
     return (

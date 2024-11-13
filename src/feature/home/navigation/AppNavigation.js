@@ -23,15 +23,6 @@ const AppNavigation = () => {
     const isIos = Platform.OS === 'ios';
     const navigation = useNavigation();
 
-    useEffect(() => {
-        navigation.reset({
-            index: 0,
-            routes: [{
-                name: ROUTES.home,
-            }],
-        });
-    }, []);
-
     const goBack = () => {
         if (
             [ROUTES.info, ROUTES.setting, ROUTES.explore].includes(
@@ -84,7 +75,8 @@ const AppNavigation = () => {
                 name={ROUTES.info}
                 component={InfoScreen}
                 options={{
-                    headerTitle: () => renderTitle(NAVIGATION_TITLE_STR.info[languageCode]),
+                    headerTitle: () =>
+                        renderTitle(NAVIGATION_TITLE_STR.info[languageCode]),
                     headerLeft: renderLeft,
                     headerRight: renderRight,
                     headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
@@ -94,7 +86,8 @@ const AppNavigation = () => {
                 name={ROUTES.setting}
                 component={SettingScreen}
                 options={{
-                    headerTitle: () => renderTitle(NAVIGATION_TITLE_STR.setting[languageCode]),
+                    headerTitle: () =>
+                        renderTitle(NAVIGATION_TITLE_STR.setting[languageCode]),
                     headerLeft: renderLeft,
                     headerRight: renderRight,
                     headerRightContainerStyle: isIos ? Style.jc_fs : Style.jc_c,
